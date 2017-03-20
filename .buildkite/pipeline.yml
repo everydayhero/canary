@@ -12,7 +12,7 @@ steps:
     branches: master
 
   - name: ":docker: :label: Production"
-    command: "bin/buildkite bin/ci tag Production"
+    command: "bin/buildkite bin/ci tag production"
     branches: master
 
   - wait
