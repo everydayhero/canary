@@ -1,0 +1,14 @@
+#!/bin/bash
+RUNNING=true
+PORT=${PORT:-80}
+ECHO=${ECHO:-"echo"}
+
+trap quit INT
+
+function quit() {
+  echo "Quiting..."
+  RUNNING=false
+}
+
+echo "Listening on port ${PORT}..."
+while ${RUNNING} ; do nc -l -p ${PORT} -c 'printf "HTTP/1.1 200 OK\n\n${ECHO}\n"'; done
