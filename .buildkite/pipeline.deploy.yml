@@ -7,7 +7,7 @@ steps:
   - wait
 
   - name: ":gun: Staging"
-    command: "curl -v https://canary.everydayhero-staging.io"
+    command: "curl -f https://canary.everydayhero-staging.io"
     branches: master
 
   - wait
@@ -19,5 +19,5 @@ steps:
   - wait
 
   - name: ":gun: Production"
-    command: "curl -v https://canary.everydayhero.io"
+    command: "curl -f https://canary.everydayhero.io"
     branches: master
