@@ -4,6 +4,10 @@ steps:
     command: "bin/buildkite bin/ci deploy staging"
     branches: master
 
+  - name: ":runner: Staging"
+    command: "bin/buildkite bin/ci admin-process staging date"
+    branches: master
+
   - wait
 
   - name: ":gun: Staging"
@@ -14,6 +18,10 @@ steps:
 
   - name: ":shipit: Production"
     command: "bin/buildkite bin/ci deploy production"
+    branches: master
+
+  - name: ":runner: Production"
+    command: "bin/buildkite bin/ci admin-process production date"
     branches: master
 
   - wait
