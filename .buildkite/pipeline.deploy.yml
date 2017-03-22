@@ -11,7 +11,7 @@ steps:
   - wait
 
   - name: ":gun: Staging"
-    command: "curl -f https://canary.everydayhero-staging.io"
+    command: "curl -f --retry 3 --retry-delay 10 https://canary.everydayhero-staging.io"
     branches: master
 
   - wait
@@ -27,5 +27,5 @@ steps:
   - wait
 
   - name: ":gun: Production"
-    command: "curl -f https://canary.everydayhero.io"
+    command: "curl -f --retry 3 --retry-delay 10 https://canary.everydayhero.io"
     branches: master
