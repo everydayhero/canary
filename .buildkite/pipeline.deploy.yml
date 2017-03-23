@@ -1,31 +1,16 @@
 ---
 steps:
-  - name: ":shipit: Staging"
-    command: "bin/buildkite bin/ci deploy staging"
+  - name: ":shipit:"
+    command: "bin/buildkite bin/ci deploy $PLAIN_ENV"
     branches: master
 
-  - name: ":runner: Staging"
-    command: "bin/buildkite bin/ci admin-process staging date"
-    branches: master
-
-  - wait
-
-  - name: ":gun: Staging"
-    command: "curl -f --retry 3 --retry-delay 10 https://canary.everydayhero-staging.io"
+  - name: ":runner:"
+    command: "bin/buildkite bin/ci admin-process $PLAIN_ENV date"
     branches: master
 
   - wait
 
-  - name: ":shipit: Production"
-    command: "bin/buildkite bin/ci deploy production"
+  - name: ":gun:"
+    command: "curl -f --retry 3 --retry-delay 10 $HEALTH_URL"
     branches: master
 
-  - name: ":runner: Production"
-    command: "bin/buildkite bin/ci admin-process production date"
-    branches: master
-
-  - wait
-
-  - name: ":gun: Production"
-    command: "curl -f --retry 3 --retry-delay 10 https://canary.everydayhero.io"
-    branches: master

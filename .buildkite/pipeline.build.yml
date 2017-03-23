@@ -17,6 +17,10 @@ steps:
 
   - wait
 
-  - name: ":buildkite:"
+  - name: ":buildkite: Staging"
     command: "bin/buildkite bin/ci initiate-deploy staging"
+    branches: master
+
+  - name: ":buildkite: Production"
+    command: "bin/buildkite bin/ci initiate-deploy production"
     branches: master
