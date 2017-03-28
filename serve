@@ -1,15 +1,11 @@
 #!/bin/bash
-RUNNING=true
-PORT=${PORT:-80}
-ECHO=${ECHO:-"echo"}
-LENGTH=$(echo "$ECHO" | wc -c)
+PORT=${PORT:-8080}
+ECHO=${ECHO:-echo}
 
-trap quit INT
+RESPONSE="HTTP/1.1 200 OK\r\nConnection: close\r\n\r\n${ECHO}\r\n"
 
-function quit() {
-  echo "Quiting..."
-  RUNNING=false
-}
-
-echo "Listening on port ${PORT}..."
-while ${RUNNING} ; do nc -l -p ${PORT} -c "printf 'HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: ${LENGTH}\nConnection: close\n\n${ECHO}\n'"; done
+echo "Listening on $PORT"
+while true; do
+  { echo -en "$RESPONSE" | nc -l "$PORT" &>/dev/null; } || break
+done
+echo "Quiting..."
