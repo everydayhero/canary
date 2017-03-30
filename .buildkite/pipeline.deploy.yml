@@ -11,6 +11,6 @@ steps:
   - wait
 
   - name: ":gun:"
-    command: "curl -f --retry 3 --retry-delay 10 $HEALTH_URL"
+    command: "curl -v -f --retry 3 --retry-delay 10 $HEALTH_URL"
     branches: master
 
