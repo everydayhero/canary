@@ -1,9 +1,12 @@
-FROM everydayhero/ubuntu:16.04
+FROM ruby:2.3-alpine
 
-EXPOSE 80
-CMD ["/app/serve"]
+ENV HOME /usr/src/app/
+WORKDIR $HOME
 
-ADD serve /app
+ADD Gemfile* server.rb $HOME
 
-RUN apt-get install -y netcat \
-  && rm -rf /var/lib/apt/lists/*
+RUN apk --update add libstdc++ g++ musl-dev make \
+ && bundle install --deployment \
+ && apk del g++ musl-dev make
+
+CMD ["ruby", "server.rb"]
