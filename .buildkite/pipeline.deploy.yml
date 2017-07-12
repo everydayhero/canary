@@ -9,7 +9,7 @@ steps:
     branches: master
 
   - name: ":shipit: :suspect:"
-    command: "plain-utils deploy-convox canary-$PLAIN_ENV"
+    command: "[ \"$PLAIN_ENV\" = staging ] && plain-utils deploy-convox canary-$PLAIN_ENV"
     branches: master
 
   - wait
