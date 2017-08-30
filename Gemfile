@@ -1,4 +1,4 @@
 source "http://rubygems.org"
 
 gem "sinatra", require: "sinatra"
-gem "thin"
+gem "unicorn"
