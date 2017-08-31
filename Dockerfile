@@ -9,4 +9,4 @@ RUN apk --update add linux-headers libstdc++ g++ musl-dev make \
  && bundle install --deployment \
  && apk del g++ musl-dev make linux-headers
 
-CMD ["unicorn"]
+CMD ["ruby", "server.rb"]
