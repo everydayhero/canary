@@ -18,9 +18,9 @@ steps:
   - wait
 
   - name: ":buildkite: Staging"
-    command: "bin/buildkite bin/ci initiate-deploy staging"
+    trigger: "canary-deploy-staging"
     branches: master
 
   - name: ":buildkite: Production"
-    command: "bin/buildkite bin/ci initiate-deploy production"
+    trigger: "canary-deploy-production"
     branches: master
