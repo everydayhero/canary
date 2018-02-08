@@ -1,9 +1,5 @@
 ---
 steps:
-  - name: ":shipit: :goberserk:"
-    command: "bin/buildkite bin/ci deploy $PLAIN_ENV"
-    branches: master
-
   - name: ":terminal:"
     command: "bin/buildkite bin/ci admin-process $PLAIN_ENV date"
     branches: master
