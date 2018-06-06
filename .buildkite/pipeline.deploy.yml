@@ -9,13 +9,17 @@ steps:
     branches: master
     concurrency_group: canary/deployment/convox
     concurrency: 1
+    env:
+      PLAIN_LOCAL: true
 
   - name: ":shipit: :suspect:"
     command: "plain-utils deploy-ecs canary-${PLAIN_ENV%%uction}"
     branches: master
     concurrency_group: canary/deployment/ecs
     concurrency: 1
-    
+    env:
+      PLAIN_LOCAL: true
+
   - wait
 
   - name: ":gun:"
