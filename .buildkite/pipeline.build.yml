@@ -20,7 +20,15 @@ steps:
   - name: ":buildkite: Staging"
     trigger: "canary-deploy-staging"
     branches: master
+    build:
+      message: "${BUILDKITE_MESSAGE}"
+      commit: "${BUILDKITE_COMMIT}"
+      branch: "${BUILDKITE_BRANCH}"
 
   - name: ":buildkite: Production"
     trigger: "canary-deploy-production"
     branches: master
+    build:
+      message: "${BUILDKITE_MESSAGE}"
+      commit: "${BUILDKITE_COMMIT}"
+      branch: "${BUILDKITE_BRANCH}"

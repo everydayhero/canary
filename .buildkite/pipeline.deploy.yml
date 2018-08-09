@@ -5,7 +5,7 @@ steps:
     branches: master
 
   - name: ":shipit: :suspect:"
-    command: "plain-utils deploy-convox canary-${PLAIN_ENV%%uction}"
+    command: "plain-utils deploy-convox canary-$${PLAIN_ENV%%uction}"
     branches: master
     concurrency_group: canary/deployment/convox
     concurrency: 1
@@ -13,7 +13,7 @@ steps:
       PLAIN_LOCAL: true
 
   - name: ":shipit: :suspect:"
-    command: "plain-utils deploy-ecs canary-${PLAIN_ENV%%uction}"
+    command: "plain-utils deploy-ecs canary-$${PLAIN_ENV%%uction}"
     branches: master
     concurrency_group: canary/deployment/ecs
     concurrency: 1
