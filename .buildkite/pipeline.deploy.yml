@@ -1,7 +1,7 @@
 ---
 steps:
   - name: ":terminal:"
-    command: "bin/buildkite bin/ci admin-process $PLAIN_ENV date"
+    command: "plain-utils ssh $PLAIN_ENV admin date"
     branches: master
 
   - name: ":shipit: :suspect:"
