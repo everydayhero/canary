@@ -13,12 +13,17 @@ steps:
       PLAIN_LOCAL: true
 
   - name: ":shipit: :suspect:"
-    command: "plain-utils deploy-ecs canary-$${PLAIN_ENV%%uction}"
     branches: master
     concurrency_group: canary/deployment/ecs
     concurrency: 1
-    env:
-      PLAIN_LOCAL: true
+    plugins:
+      - docker#v2.1.0:
+          image: everydayhero/plain-utils:latest
+          command: [ deploy, --app, canary, --env, $PLAIN_ENV, --wait ]
+          mount-buildkite-agent: false
+          always-pull: true
+          volumes: false
+          shell: false
 
   - wait
 
