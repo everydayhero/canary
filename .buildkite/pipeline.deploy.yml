@@ -5,16 +5,8 @@ steps:
     branches: master
 
   - name: ":shipit: :suspect:"
-    command: "plain-utils deploy-convox canary-$${PLAIN_ENV%%uction}"
     branches: master
-    concurrency_group: canary/deployment/convox
-    concurrency: 1
-    env:
-      PLAIN_LOCAL: true
-
-  - name: ":shipit: :suspect:"
-    branches: master
-    concurrency_group: canary/deployment/ecs
+    concurrency_group: canary/deployment/$PLAIN_ENV
     concurrency: 1
     plugins:
       - docker#v2.1.0:
