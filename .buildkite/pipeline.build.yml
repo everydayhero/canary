@@ -1,18 +1,22 @@
 ---
 steps:
   - name: ":docker: :construction:"
-    command: "bin/buildkite bin/ci build"
+    command: "docker build -t everydayhero/canary:${BUILDKITE_COMMIT} ."
     agents:
       queue: build
 
   - wait
 
   - name: ":docker: :label: Staging"
-    command: "bin/buildkite bin/ci tag staging"
+    command:
+      - "docker tag everydayhero/canary:${BUILDKITE_COMMIT} everydayhero/canary:staging"
+      - "docker push everydayhero/canary:staging"
     branches: master
 
   - name: ":docker: :label: Production"
-    command: "bin/buildkite bin/ci tag production"
+    command:
+      - "docker tag everydayhero/canary:${BUILDKITE_COMMIT} everydayhero/canary:production"
+      - "docker push everydayhero/canary:production"
     branches: master
 
   - wait
