@@ -1,15 +1,11 @@
 ---
 steps:
-  - name: ":terminal:"
-    command: "plain-utils ssh $PLAIN_ENV admin date"
-    branches: master
-
   - name: ":shipit: :suspect:"
     branches: master
     concurrency_group: canary/deployment/$PLAIN_ENV
     concurrency: 1
     plugins:
-      - docker#v2.1.0:
+      - docker:
           image: everydayhero/plain-utils:latest
           command: [ deploy, --app, canary, --env, $PLAIN_ENV, --wait ]
           mount-buildkite-agent: false
