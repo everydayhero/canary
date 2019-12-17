@@ -9,8 +9,8 @@ steps:
           image: everydayhero/plain-utils:latest
           command: [ deploy, --app, canary, --env, $PLAIN_ENV, --wait ]
           mount-buildkite-agent: false
+          mount-checkout: false
           always-pull: true
-          volumes: false
           shell: false
 
   - wait
